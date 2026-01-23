@@ -6,8 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/_Under the Spider Nest/Scenes/Menu.unity
+    guid: a9cd43f7b4a300b4198e0795ed040fe4
+  - enabled: 1
+    path: Assets/_Under the Spider Nest/Scenes/Game.unity
+    guid: 477ec70d7da14534dbaa8f254e33c019
+  - enabled: 1
+    path: Assets/_Under the Spider Nest/Scenes/Win.unity
+    guid: 5cb449d46280c98478feafee54aa00e3
+  - enabled: 1
+    path: Assets/_Under the Spider Nest/Scenes/GameOver.unity
+    guid: 9a1e37bd8cf75304b9db5feb939b88ef
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
