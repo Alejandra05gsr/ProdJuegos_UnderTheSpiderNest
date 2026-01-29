@@ -2,17 +2,19 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public CharacterController controller;
+    private CharacterController controller;
     public float speed = 5f;
+
     float rotSpeed = 10f;
 
-    private Vector3 forward, right;
+    private Animator animator;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        controller = GetComponent<CharacterController>();   
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -26,15 +28,17 @@ public class PlayerMovement : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
-        if (direction.magnitude >= 0.1f)
+        controller.Move(new Vector3(horizontal,0,vertical) * speed * Time.deltaTime);
+        animator.SetBool("Walking", true);
+
+        Vector3 targetDirection = new Vector3(horizontal, 0, vertical);
+        if (targetDirection != Vector3.zero)
         {
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-
-            transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
-
-            controller.Move(direction * speed * Time.deltaTime);
+            Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotSpeed * Time.deltaTime);
         }
+
+        //    animator.SetBool("Walking", false);
     }
 }
