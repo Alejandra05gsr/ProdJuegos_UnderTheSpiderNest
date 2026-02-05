@@ -5,26 +5,21 @@ public class EnemySpawner : MonoBehaviour
     public GameObject spiderPrefab;
     public Transform spiderSpawn;
     public float spawnInterval = 3f;
+    int maxSpiders = 10;
+    int currentSpiders;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        InvokeRepeating("SpawnSpiders", 1f, spawnInterval);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        SpawnSpiders();
-    }
 
     void SpawnSpiders()
     {
-        //spawn a spider every spawnInterval seconds
-        if (Time.time % spawnInterval < 0.02f)
-        {
-            Instantiate(spiderPrefab, spiderSpawn.position, spiderSpawn.rotation);
-        }
+        if (currentSpiders >= maxSpiders) return;
+        Instantiate(spiderPrefab, spiderSpawn.position, Quaternion.identity);
+        currentSpiders++;
 
     }
 

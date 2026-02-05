@@ -18,7 +18,7 @@ public class ChangeScene : MonoBehaviour
 
     public void LoadGame()
     {
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("Level01");
     }
 
     public void LoadMenu()

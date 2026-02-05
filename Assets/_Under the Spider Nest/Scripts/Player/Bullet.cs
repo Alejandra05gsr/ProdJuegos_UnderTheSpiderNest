@@ -19,11 +19,10 @@ public class Bullet : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Bullet collided with " + collision.gameObject.name);
+        //Debug.Log("Bullet collided with " + collision.gameObject.name);
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Destroy(collision.gameObject);
-            Destroy(gameObject);
+            collision.gameObject.GetComponent<EnemyMovement>().Dying();
         }
         else if (!collision.gameObject.CompareTag("Player"))
         {
@@ -33,8 +32,8 @@ public class Bullet : MonoBehaviour
 
     void MoveBullet()
     {
-        transform.Translate(Vector3.forward * 20f * Time.deltaTime);
-        Destroy(gameObject, 2f);
+        transform.Translate(Vector3.forward * 15f * Time.deltaTime);
+        Destroy(gameObject, 0.5f);
     }
 
 }
