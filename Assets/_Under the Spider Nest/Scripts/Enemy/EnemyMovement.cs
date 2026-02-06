@@ -3,7 +3,7 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     public float speed = 3;
-    public float stopDistance = 1.5f;
+    public float stopDistance;
     int damage = 1;
     public float attackCooldown = 1f;
 
@@ -27,9 +27,6 @@ public class EnemyMovement : MonoBehaviour
 
         Movement();
 
-
-
-
     }
 
     void Movement()
@@ -38,22 +35,25 @@ public class EnemyMovement : MonoBehaviour
 
         if (distance > stopDistance) //Persigue al jugador :)
         {
-            animator.SetBool("Walking", true);
             Vector3 direction = (player.position - transform.position).normalized;
             transform.position += direction * speed * Time.deltaTime;
             transform.LookAt(player);
         }
-        else  //Se detiene y ataca al jugador :(
+        else if (distance <= stopDistance) //Se detiene y ataca al jugador :(
         {
-            //Animaciones
-            animator.SetBool("Walking", false);
-            animator.SetBool("Attacking", true);
-
-            //Se llama el script de vida del jugador para hacerle daño
-            player.GetComponent<HP>().TakeDamage(damage);
-            Debug.Log("Attaque a jugador");
-
+            Attacking();
         }
+    }
+
+    void Attacking()
+    {
+        //Animaciones
+        animator.SetBool("Walking", false);
+        animator.SetBool("Attacking", true);
+
+        //Se llama el script de vida del jugador para hacerle daño
+        player.GetComponent<HP>().TakeDamage(damage);
+        Debug.Log("Attaque a jugador");
     }
 
     public void Dying()
