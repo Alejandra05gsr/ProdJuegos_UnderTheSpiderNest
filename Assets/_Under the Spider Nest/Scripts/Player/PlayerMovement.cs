@@ -29,13 +29,18 @@ public class PlayerMovement : MonoBehaviour
         float vertical = Input.GetAxis("Vertical");
 
 
-        controller.Move(new Vector3(horizontal,0,vertical) * speed * Time.deltaTime);
-        animator.SetBool("Walking", true);
+        Vector3 move = new Vector3(horizontal, 0, vertical);
 
-        Vector3 targetDirection = new Vector3(horizontal, 0, vertical);
-        if (targetDirection != Vector3.zero)
+        controller.Move(move * speed * Time.deltaTime);
+
+        bool isMoving = move.magnitude > 0.01f;
+
+        animator.SetBool("Walking", isMoving);
+
+
+        if (isMoving)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+            Quaternion targetRotation = Quaternion.LookRotation(move);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotSpeed * Time.deltaTime);
         }
 

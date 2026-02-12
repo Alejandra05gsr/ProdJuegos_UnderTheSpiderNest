@@ -1,18 +1,15 @@
 using UnityEngine;
 
-public class Weapons : MonoBehaviour
+public class Weapons : PowerUps
 {
-    [Header("Ametralladora Weapon Settings")]
-    public Transform spawnBulletAmetralladora;
-    public GameObject bulletPrefabAmetralladora;
-    int fireRateAmetralladora = 2;
+    public float fireRate;
+    public float damage;
+    public Transform firePoint;
+    protected float nextFireTime;
 
-    //[Header("Bazuca Weapon Settings")]
-    //public Transform spawnBulletBazuca;
-    //public GameObject bulletPrefabBazuca;
+    public GameObject bulletPrefab;
 
-    //[Header("LanzaLlamas Weapon Settings")]
-    //public Transform spawnBulletLanzaLlamas;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,7 +20,10 @@ public class Weapons : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ShootAmetralladora();
+        if (Input.GetMouseButton(0))
+        {
+            Shoot();
+        }
     }
 
     void ChangeWeapon()
@@ -31,20 +31,21 @@ public class Weapons : MonoBehaviour
 
     }
 
-    void ShootAmetralladora()
+    protected void Shoot()
     {
         //Cada cierto tiempo se dispara una bala
-        if (Time.time >= fireRateAmetralladora)
+        if (Time.time > nextFireTime)
         {
-            Instantiate(bulletPrefabAmetralladora, spawnBulletAmetralladora.position, spawnBulletAmetralladora.rotation);
-            fireRateAmetralladora = Mathf.FloorToInt(Time.time) + 1;
+            ShootBehaviour();
 
+            //Para determinar el fireRate es dividir entre uno el firate, cuantos disparos se permiten por segundo y sumar eso al timepo actual.
+            nextFireTime = Time.time + (1 / fireRate);
         }
     }
 
-    //void ShootBazuca()
-    //{
-    //    Instantiate(bulletPrefabBazuca, spawnBulletBazuca.position, spawnBulletBazuca.rotation);
-    //}
-
+    //Función para sobrecargar el disparo
+    protected virtual void ShootBehaviour()
+    {
+        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+    }
 }

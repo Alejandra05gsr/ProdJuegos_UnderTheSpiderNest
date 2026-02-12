@@ -565,6 +565,7 @@ GameObject:
   - component: {fileID: 1180208158}
   - component: {fileID: 1180208160}
   - component: {fileID: 1180208159}
+  - component: {fileID: 1180208161}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -629,6 +630,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1180208157}
   m_CullTransparentMesh: 1
+--- !u!114 &1180208161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1180208157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c8ee1885d0f63240a9ea277fe90316a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Fade
+  image: {fileID: 1941161429}
+  tweenTime: 1
+  onEndFadeEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2109701962}
+        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
+        m_MethodName: LoadMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  fadeOutOnStart: 0
 --- !u!1 &1642483581
 GameObject:
   m_ObjectHideFlags: 0
@@ -724,7 +755,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 0
-      - m_Target: {fileID: 1941161428}
+      - m_Target: {fileID: 1180208161}
         m_TargetAssemblyTypeName: Fade, Assembly-CSharp
         m_MethodName: Fading
         m_Mode: 6
@@ -965,20 +996,8 @@ MonoBehaviour:
   tweenTime: 1
   onEndFadeEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2109701962}
-        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
-        m_MethodName: LoadMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  fadeOutOnStart: 0
+      m_Calls: []
+  fadeOutOnStart: 1
 --- !u!114 &1941161429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -992,7 +1011,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

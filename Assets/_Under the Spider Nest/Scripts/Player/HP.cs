@@ -6,6 +6,7 @@ public class HP : MonoBehaviour
 {
     public int playerHP = 1;
     public TextMeshProUGUI hpText;
+    public GameObject PowerUps;
 
     private Animator animator;
 
@@ -39,6 +40,7 @@ public class HP : MonoBehaviour
     {
         animator.SetBool("Idle", false);
         animator.SetBool("Die", true);
+        PowerUps.SetActive(false);
         //Cambiar a la escena de Game Over cuando termine la animacion de muerte
         //Se espera 1 segundo para que se vea la animacion de muerte
 
