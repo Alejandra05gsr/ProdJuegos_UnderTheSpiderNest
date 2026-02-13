@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
 
     private Animator animator;
 
+    [SerializeField] LayerMask groundMask;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         Movement();
+        Rotate();
     }
 
     void Movement()
@@ -37,12 +40,27 @@ public class PlayerMovement : MonoBehaviour
 
         animator.SetBool("Walking", isMoving);
 
+    }
 
-        if (isMoving)
+    void Rotate()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, 100f, groundMask))
         {
-            Quaternion targetRotation = Quaternion.LookRotation(move);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotSpeed * Time.deltaTime);
+            Vector3 target = hit.point;
+
+            target.y = transform.position.y;
+
+            Vector3 direction = target - transform.position;
+
+            if (direction.sqrMagnitude > 0.01f)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotSpeed * Time.deltaTime);
+            }
         }
 
     }
+
 }

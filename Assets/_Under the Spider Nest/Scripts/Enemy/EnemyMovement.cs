@@ -32,9 +32,14 @@ public class EnemyMovement : MonoBehaviour
 
         if (distance > stopDistance) //Persigue al jugador :)
         {
+
             Vector3 direction = (player.position - transform.position).normalized;
             transform.position += direction * speed * Time.deltaTime;
             transform.LookAt(player);
+        }
+        else
+        {
+            Attacking();
         }
     }
 
@@ -49,7 +54,7 @@ public class EnemyMovement : MonoBehaviour
 
     public void Attacking()
     {
-        animator.SetBool("Attacking", true);
+        animator.SetBool("Attack", true);
         Debug.Log("Attacking" + animator.GetBool("Attacking"));
         DesactiveEnemy();
         player.GetComponent<HP>().TakeDamage(damage);
