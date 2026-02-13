@@ -19,9 +19,10 @@ public class Bullet : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        //Debug.Log("Bullet collided with " + collision.gameObject.name);
+
         if (collision.gameObject.CompareTag("Enemy"))
         {
+
             collision.gameObject.GetComponent<EnemyMovement>().Dying();
         }
         else if (!collision.gameObject.CompareTag("Player"))

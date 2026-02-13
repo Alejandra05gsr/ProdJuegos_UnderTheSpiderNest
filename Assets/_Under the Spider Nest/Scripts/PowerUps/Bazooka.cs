@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class PowerUps : MonoBehaviour
+public class Bazooka : Weapons
 {
-    public int timeActive = 5; //Tiepo que durará el power up activo
 
+    public GameObject bazookaBulletPrefab;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -16,4 +16,10 @@ public class PowerUps : MonoBehaviour
     {
         
     }
+
+    protected override void ShootBehaviour()
+    {
+        Instantiate(bazookaBulletPrefab, firePoint.position, firePoint.rotation);
+    }
+
 }

@@ -7,17 +7,14 @@ public class EnemyMovement : MonoBehaviour
     int damage = 1;
     public float attackCooldown = 1f;
 
-
     Transform player;
     float attackTimer;
-    private Animator animator;
+    public Animator animator;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        animator.SetBool("Walking", true);
     }
 
     // Update is called once per frame
@@ -39,35 +36,44 @@ public class EnemyMovement : MonoBehaviour
             transform.position += direction * speed * Time.deltaTime;
             transform.LookAt(player);
         }
-        else if (distance <= stopDistance) //Se detiene y ataca al jugador :(
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
         {
             Attacking();
         }
     }
 
-    void Attacking()
-    {
-        //Animaciones
-        animator.SetBool("Walking", false);
-        animator.SetBool("Attacking", true);
 
-        //Se llama el script de vida del jugador para hacerle daño
+    public void Attacking()
+    {
+        animator.SetBool("Attacking", true);
+        Debug.Log("Attacking" + animator.GetBool("Attacking"));
+        DesactiveEnemy();
         player.GetComponent<HP>().TakeDamage(damage);
-        Debug.Log("Attaque a jugador");
     }
 
     public void Dying()
     {
-        animator.SetBool("Walking", false);
         animator.SetBool("Die", true);
-        speed = 0;
-        Invoke(nameof(Desvanecer), 1f);
-        Debug.Log("Enemigo muere");
+        DesactiveEnemy();
+        Invoke(nameof(Desvanecer), 2f);
     }
 
     void Desvanecer()
     {
-        this.gameObject.SetActive(false);
+        //Fade de desvanecer con tween
+        gameObject.SetActive(false);
+        GameManager.instance.EnemyDefeated();
     }
+
+    void DesactiveEnemy()
+    {
+        speed = 0;
+        this.gameObject.GetComponent<Collider>().enabled = false;
+    }
+
 
 }

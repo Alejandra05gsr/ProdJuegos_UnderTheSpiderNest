@@ -44,6 +44,5 @@ public class PlayerMovement : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotSpeed * Time.deltaTime);
         }
 
-        //    animator.SetBool("Walking", false);
     }
 }
