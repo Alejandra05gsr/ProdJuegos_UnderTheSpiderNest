@@ -25081,6 +25081,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4374338201195583907, guid: 772e8fad8b9861742b6573f19f0fe458, type: 3}
   m_PrefabInstance: {fileID: 1132841651}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1355074854 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2386699103351442849, guid: b42233707402e7d4bbdbf1d7e4c80a66, type: 3}
+  m_PrefabInstance: {fileID: 2403704808308431832}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1360238735
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32348,13 +32353,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 2163941775805367850, guid: b42233707402e7d4bbdbf1d7e4c80a66, type: 3}
+      propertyPath: insecticide
+      value: 
+      objectReference: {fileID: 1355074854}
     - target: {fileID: 2446323782187086971, guid: b42233707402e7d4bbdbf1d7e4c80a66, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2587075607496776966, guid: b42233707402e7d4bbdbf1d7e4c80a66, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2587075607496776966, guid: b42233707402e7d4bbdbf1d7e4c80a66, type: 3}
       propertyPath: m_TagString
@@ -32410,6 +32419,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6870430025719264224, guid: b42233707402e7d4bbdbf1d7e4c80a66, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7503352902237500954, guid: b42233707402e7d4bbdbf1d7e4c80a66, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766672946098677688, guid: b42233707402e7d4bbdbf1d7e4c80a66, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766672946098677688, guid: b42233707402e7d4bbdbf1d7e4c80a66, type: 3}
+      propertyPath: startDelay.scalar
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8284566578352760954, guid: b42233707402e7d4bbdbf1d7e4c80a66, type: 3}
