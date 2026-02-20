@@ -3,6 +3,7 @@ using UnityEngine;
 public class MachineGun : Weapons
 {
     public GameObject bulletPrefab;
+    public WeaponManager manager;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -36,3 +37,5 @@ public class MachineGun : Weapons
     }
 
 }
+
+

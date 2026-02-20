@@ -7,6 +7,7 @@ public abstract class PowerUps : MonoBehaviour
     public GameObject prefabPowerUp;
 
     protected bool isActive = false; 
+    protected bool machineGunActive = true;
 
     void Start()
     {
@@ -24,8 +25,8 @@ public abstract class PowerUps : MonoBehaviour
     {
         if (isActive) return; 
         isActive = true;
-        Debug.Log("Power-up activated: " + gameObject.name);
-        
+
+
         StartCoroutine(DurationPowerUp());
     }
 
@@ -42,6 +43,9 @@ public abstract class PowerUps : MonoBehaviour
 
         prefabPowerUp.SetActive(false);
 
+        GameObject mg = GameObject.FindGameObjectWithTag("MachineGun");
+        if (mg != null)
+            mg.SetActive(true);
     }
 
 

@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using DG.Tweening;
 using UnityEngine.UI;
+using TMPro;
 
 public class Fade : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class Fade : MonoBehaviour
     public float tweenTime;
     public UnityEvent onEndFadeEvent;
     public bool fadeOutOnStart;
+    //public TextMeshProUGUI levelTxt;
 
     void Start()
     {

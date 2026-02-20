@@ -7792,6 +7792,7 @@ MonoBehaviour:
   damage: 1
   firePoint: {fileID: 5394258260660905198}
   bulletPrefab: {fileID: 3295733158967467223, guid: 42820939f86732348a16f86a5f7a0e37, type: 3}
+  manager: {fileID: 0}
 --- !u!1 &2590101733202325244
 GameObject:
   m_ObjectHideFlags: 0
@@ -11245,6 +11246,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   speed: 7
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &8284566578352760954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11717,6 +11721,37 @@ Transform:
   m_Children:
   - {fileID: 6775380477359133190}
   m_Father: {fileID: 7811058316163828075}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6230117676263327202
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 489683690635701393}
+  m_Layer: 0
+  m_Name: firepoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &489683690635701393
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6230117676263327202}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4166487964870216442}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6259737398656599874
 GameObject:
@@ -12367,6 +12402,7 @@ Transform:
   m_Children:
   - {fileID: 5241206055068196916}
   - {fileID: 7890001483494883639}
+  - {fileID: 489683690635701393}
   m_Father: {fileID: 3423346498712655337}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!33 &4114205577802911580

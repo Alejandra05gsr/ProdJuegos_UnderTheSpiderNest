@@ -14,7 +14,19 @@ public class Bazooka : Weapons
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetMouseButton(0))
+        {
+            Shooting();
+        }
+    }
+
+    void Shooting()
+    {
+        if (Time.time < nextFireTime) return;
+
+        nextFireTime = Time.time + (1 / fireRate);
+
+        ShootBehaviour();
     }
 
     protected override void ShootBehaviour()

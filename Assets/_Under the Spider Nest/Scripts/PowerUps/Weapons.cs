@@ -17,8 +17,8 @@ public abstract class Weapons : PowerUps
     // Update is called once per frame
     protected virtual void Update()
     {
-        //if (!isActive) return;
-   
+        if (!isActive) return;
+
 
         if (Input.GetMouseButton(0))
         {

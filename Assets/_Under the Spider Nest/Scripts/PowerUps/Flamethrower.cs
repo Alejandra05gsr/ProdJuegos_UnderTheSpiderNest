@@ -14,8 +14,12 @@ public class Flamethrower : Weapons
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetMouseButton(0))
+        {
+            ShootBehaviour();
+        }
     }
+
 
     protected override void ShootBehaviour()
     {

@@ -1,9 +1,13 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
+
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    public TextMeshProUGUI enemiesDefeatedText;
+    int totalEnemiesDefeated = 0;
 
     public int currentLevel;
     int enemiesToDefeat;
@@ -67,6 +71,7 @@ public class GameManager : MonoBehaviour
     public void EnemyDefeated()
     {
         enemiesDefeated++;
+        enemiesDefeatedText.text = "Enemies Defeated: " + enemiesDefeated.ToString() + "/" + ConditionToWin().ToString();
         CheckWinCondition();
     }
 
