@@ -3,7 +3,12 @@ using UnityEngine;
 public class MachineGun : Weapons
 {
     public GameObject bulletPrefab;
-    public WeaponManager manager;
+    public CameraShake cameraShake;
+
+    [Header("Shake Weapon")]
+    public float amplitude = 2;
+    public float frequency = 1;
+    public float duration = 0.3f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -34,6 +39,7 @@ public class MachineGun : Weapons
     protected override void ShootBehaviour()
     {
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        cameraShake.ShakeCamera(amplitude, frequency, duration);
     }
 
 }

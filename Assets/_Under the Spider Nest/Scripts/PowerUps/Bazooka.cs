@@ -4,6 +4,12 @@ public class Bazooka : Weapons
 {
 
     public GameObject bazookaBulletPrefab;
+    public CameraShake cameraShake;
+
+    [Header("Shake Weapon")]
+    public float amplitude = 5;
+    public float frequency = 3;
+    public float duration = 1.0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -32,6 +38,7 @@ public class Bazooka : Weapons
     protected override void ShootBehaviour()
     {
         Instantiate(bazookaBulletPrefab, firePoint.position, firePoint.rotation);
+        cameraShake.ShakeCamera(amplitude, frequency, duration);
     }
 
 }

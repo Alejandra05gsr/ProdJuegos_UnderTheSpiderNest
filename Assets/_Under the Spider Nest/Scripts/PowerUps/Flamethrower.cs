@@ -38,7 +38,7 @@ public class Flamethrower : Weapons
         if(other.CompareTag("Enemy"))
         {
             Debug.Log("Enemigo alcanzado por el insecticida");
-            other.GetComponent<EnemyHealth>().TakeDamage(1);
+            //other.GetComponent<EnemyHealth>().TakeDamage(1);
         }
     }
 
