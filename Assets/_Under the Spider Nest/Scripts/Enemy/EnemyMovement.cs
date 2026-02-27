@@ -1,4 +1,6 @@
+using DG.Tweening;
 using UnityEngine;
+using System.Collections;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -6,6 +8,9 @@ public class EnemyMovement : MonoBehaviour
     public float stopDistance;
     int damage = 1;
     public float attackCooldown = 1f;
+    bool isMoving;
+    bool canAttack;
+
 
     Transform player;
     float attackTimer;
@@ -15,6 +20,8 @@ public class EnemyMovement : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        isMoving = true;
+        canAttack = true;
     }
 
     // Update is called once per frame
@@ -28,6 +35,7 @@ public class EnemyMovement : MonoBehaviour
 
     void Movement()
     {
+        if (!isMoving) return;
         float distance = Vector3.Distance(transform.position, player.position);
 
         if (distance > stopDistance) //Persigue al jugador :)
@@ -39,45 +47,41 @@ public class EnemyMovement : MonoBehaviour
         }
         else
         {
-            Attacking();
+            if (Time.time >= attackTimer)
+            {
+                if (!canAttack) return;
+
+                 StartCoroutine(Attacking());
+                 attackTimer = Time.time + attackCooldown;
+            }
+
         }
     }
 
-    public void OnCollisionEnter(Collision collision)
+
+    IEnumerator Attacking()
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            Attacking();
-        }
+        player.GetComponent<HP>().TakeDamage(damage);
+        DesactiveEnemy();
+        yield return new WaitForSeconds(2);
+        ActiveEnemy();
+
     }
 
-
-    public void Attacking()
+    public void DesactiveEnemy()
     {
         animator.SetBool("Attack", true);
-        Debug.Log("Attacking" + animator.GetBool("Attacking"));
-        DesactiveEnemy();
-        player.GetComponent<HP>().TakeDamage(damage);
-    }
-
-    public void Dying()
-    {
-        animator.SetBool("Die", true);
-        DesactiveEnemy();
-        Invoke(nameof(Desvanecer), 2f);
-    }
-
-    void Desvanecer()
-    {
-        //Fade de desvanecer con tween
-        gameObject.SetActive(false);
-        GameManager.instance.EnemyDefeated();
-    }
-
-    void DesactiveEnemy()
-    {
-        speed = 0;
         this.gameObject.GetComponent<Collider>().enabled = false;
+        isMoving = false;
+        canAttack = false;
+    }
+
+    public void ActiveEnemy()
+    {
+        animator.SetBool("Attack", false);
+        this.gameObject.GetComponent<Collider>().enabled = true;
+        isMoving = true;
+        canAttack = true;
     }
 
 

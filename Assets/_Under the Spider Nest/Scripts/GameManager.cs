@@ -43,6 +43,9 @@ public class GameManager : MonoBehaviour
             case 3:
                 enemiesToDefeat = 30;
                 break;
+            case 4:
+                enemiesToDefeat = 40;
+                break;
         }
 
         return enemiesToDefeat;
@@ -62,6 +65,9 @@ public class GameManager : MonoBehaviour
                     SceneManager.LoadScene("Level03");
                     break;
                 case 3:
+                    SceneManager.LoadScene("Level04");
+                    break;
+                case 4:
                     SceneManager.LoadScene("Win");
                     break;
             }

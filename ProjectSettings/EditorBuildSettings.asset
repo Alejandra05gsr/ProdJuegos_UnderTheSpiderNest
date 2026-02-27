@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/_Under the Spider Nest/Scenes/Level03.unity
     guid: 6ae1a2bc9db5d5142b1d400ea3ededff
   - enabled: 1
+    path: Assets/_Under the Spider Nest/Scenes/Level04.unity
+    guid: 77f9f7e785ae30a478b1bc959cce4722
+  - enabled: 1
     path: Assets/_Under the Spider Nest/Scenes/Win.unity
     guid: 5cb449d46280c98478feafee54aa00e3
   - enabled: 1

@@ -126,6 +126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71746699a787d6044bfe47be463e7ffa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
+  isbazookaBullet: 0
+  explosionZone: {fileID: 3295733158967467223}
 --- !u!54 &7514394063840769227
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class PickUpPowerUp : MonoBehaviour
 {
-    public PowerUps powerUp; // arrastras el del Player
+    public PowerUps powerUp; 
     public MachineGun machineGun;
+    public GameObject metralleta_img;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -11,6 +12,7 @@ public class PickUpPowerUp : MonoBehaviour
 
         powerUp.gameObject.SetActive(true);
         machineGun.gameObject.SetActive(false);
+        metralleta_img.SetActive(false);
 
         powerUp.ActivatePowerUp();
 

@@ -7381,6 +7381,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Shield
   timeActive: 5
   prefabPowerUp: {fileID: 2446323782187086971}
+  imagePowerUp: {fileID: 0}
 --- !u!1 &2523915579002956793
 GameObject:
   m_ObjectHideFlags: 0
@@ -7788,6 +7789,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MachineGun
   timeActive: 5
   prefabPowerUp: {fileID: 2587075607496776966}
+  imagePowerUp: {fileID: 0}
   fireRate: 10
   damage: 1
   firePoint: {fileID: 5394258260660905198}
@@ -11143,6 +11145,7 @@ GameObject:
   - component: {fileID: 7229313656850952932}
   - component: {fileID: 4102544860362990558}
   - component: {fileID: 8284566578352760954}
+  - component: {fileID: 266820434623402913}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -11264,9 +11267,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c41e8791d31b8ca48b7cf9db1c389551, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HP
+  hpImage: []
   playerHP: 1
-  hpText: {fileID: 0}
   PowerUps: {fileID: 4374410431393821069}
+--- !u!114 &266820434623402913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5716322625349201539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac02d384c5145a04991f36ae3237bf5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DefaultWeapon
+  bazookaPrefab: {fileID: 0}
+  firetPrefab: {fileID: 0}
+  metralletaPrefab: {fileID: 0}
+  metralleta_img: {fileID: 0}
 --- !u!1 &5733536580581109772
 GameObject:
   m_ObjectHideFlags: 0
@@ -12479,6 +12498,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Bazooka
   timeActive: 5
   prefabPowerUp: {fileID: 6870430025719264224}
+  imagePowerUp: {fileID: 0}
   fireRate: 1
   damage: 1
   firePoint: {fileID: 5241206055068196916}
@@ -13108,6 +13128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Flamethrower
   timeActive: 5
   prefabPowerUp: {fileID: 7503352902237500954}
+  imagePowerUp: {fileID: 0}
   fireRate: 1
   damage: 1
   firePoint: {fileID: 7420152232015628548}

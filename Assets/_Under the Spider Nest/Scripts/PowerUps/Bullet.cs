@@ -2,13 +2,14 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-
+    public bool isbazookaBullet;
+    public GameObject explosionZone;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -19,13 +20,19 @@ public class Bullet : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (isbazookaBullet) //Municion de bazooka
         {
-
-            collision.gameObject.GetComponent<EnemyMovement>().Dying();
+            explosionZone.SetActive(true);
+            //Espera unos segundos
+            Destroy(gameObject,1.5f);
         }
-        else if (!collision.gameObject.CompareTag("Player"))
+
+        if (collision.gameObject.CompareTag("Enemy") && !isbazookaBullet) //Municion de metralleta
+        {
+            collision.gameObject.GetComponent<EnemyHP>().Dying();
+        }
+        
+        if (!collision.gameObject.CompareTag("Player"))
         {
             Destroy(gameObject);
         }

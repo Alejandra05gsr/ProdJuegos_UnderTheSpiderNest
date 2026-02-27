@@ -32,13 +32,18 @@ public class PlayerMovement : MonoBehaviour
         float vertical = Input.GetAxis("Vertical");
 
 
+
         Vector3 move = new Vector3(horizontal, 0, vertical);
 
         controller.Move(move * speed * Time.deltaTime);
 
-        bool isMoving = move.magnitude > 0.01f;
 
-        animator.SetBool("Walking", isMoving);
+        animator.SetFloat("MoveX", horizontal);
+        animator.SetFloat("MoveZ", vertical);
+
+        //bool isMoving = move.magnitude > 0.01f;
+
+        //animator.SetBool("Walking", isMoving);
 
     }
 
@@ -62,5 +67,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+
+
 
 }

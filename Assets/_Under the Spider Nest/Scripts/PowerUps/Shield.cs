@@ -21,7 +21,7 @@ public class Shield : PowerUps
 
         if (collision.CompareTag("Enemy"))
         {
-            collision.GetComponent<EnemyMovement>().Dying(); 
+            collision.GetComponent<EnemyHP>().Dying(); 
         }
     }
 

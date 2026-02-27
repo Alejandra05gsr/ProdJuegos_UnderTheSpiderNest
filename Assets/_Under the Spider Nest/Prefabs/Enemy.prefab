@@ -2513,6 +2513,7 @@ GameObject:
   - component: {fileID: 7664501442678382796}
   - component: {fileID: 4653430872175677254}
   - component: {fileID: 3331549979151321093}
+  - component: {fileID: 1317324476068162907}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -2580,7 +2581,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -2599,6 +2600,19 @@ MonoBehaviour:
   speed: 5
   stopDistance: 3
   attackCooldown: 1
+  animator: {fileID: 8958354462708923270}
+--- !u!114 &1317324476068162907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6230751176621284506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b484dadc5f165f489cf5be7706a455d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHP
   animator: {fileID: 8958354462708923270}
 --- !u!1 &6277529423443863598
 GameObject:
