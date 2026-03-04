@@ -22332,7 +22332,7 @@ MonoBehaviour:
   FocusTracking: 0
   FocusTarget: {fileID: 0}
   FocusOffset: 0
-  Profile: {fileID: 11400000, guid: 59b91070636a51045bc13ce1aded0de4, type: 2}
+  Profile: {fileID: 11400000, guid: 6e2376b0eac25c44ba790dad453ec318, type: 2}
 --- !u!1 &1488500426
 GameObject:
   m_ObjectHideFlags: 0

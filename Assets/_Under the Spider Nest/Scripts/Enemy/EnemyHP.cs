@@ -24,6 +24,10 @@ public class EnemyHP : MonoBehaviour
     public void Dying()
     {
         animator.SetBool("Die", true);
+        Debug.Log("Empezando muerte");
+
+
+        this.GetComponent<MaterialFade>().StartFade();
         this.gameObject.GetComponent<EnemyMovement>().DesactiveEnemy();
         Invoke(nameof(Desvanecer), 2f);
     }

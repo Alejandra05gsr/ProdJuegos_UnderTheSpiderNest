@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     int enemiesToDefeat;
     public int enemiesDefeated = 0;
 
+    bool paused = false;
 
     void Awake()
     {
@@ -80,5 +81,12 @@ public class GameManager : MonoBehaviour
         enemiesDefeatedText.text = "Enemies Defeated: " + enemiesDefeated.ToString() + "/" + ConditionToWin().ToString();
         CheckWinCondition();
     }
+
+    public void TogglePause()
+    {
+        paused = !paused;
+        Time.timeScale = paused ? 0 : 1;
+    }
+
 
 }

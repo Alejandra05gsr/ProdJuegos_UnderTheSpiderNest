@@ -2514,6 +2514,7 @@ GameObject:
   - component: {fileID: 4653430872175677254}
   - component: {fileID: 3331549979151321093}
   - component: {fileID: 1317324476068162907}
+  - component: {fileID: 4924079506868576199}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -2614,6 +2615,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHP
   animator: {fileID: 8958354462708923270}
+--- !u!114 &4924079506868576199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6230751176621284506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 702d6818c49346044ab46947ebf42974, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MaterialFade
+  fadeDuration: 5
 --- !u!1 &6277529423443863598
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,73 +1,92 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     private CharacterController controller;
+    public Animator animator;
+
     public float speed = 5f;
-
     float rotSpeed = 10f;
-
-    private Animator animator;
-
     [SerializeField] LayerMask groundMask;
+
+    Vector3 lastMouseDir;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         controller = GetComponent<CharacterController>();   
-        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Movement();
-        Rotate();
+        Vector3 move = GetMovementInput();
+
+        Rotate(move);
+        Movement(move);
+        UpdateAnimations(move);
     }
 
-    void Movement()
+    Vector3 GetMovementInput()
     {
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+        float h = Input.GetAxis("Horizontal");
+        float v = Input.GetAxis("Vertical");
 
-
-
-        Vector3 move = new Vector3(horizontal, 0, vertical);
-
-        controller.Move(move * speed * Time.deltaTime);
-
-
-        animator.SetFloat("MoveX", horizontal);
-        animator.SetFloat("MoveZ", vertical);
-
-        //bool isMoving = move.magnitude > 0.01f;
-
-        //animator.SetBool("Walking", isMoving);
-
+        Vector3 move = new Vector3(h, 0, v);
+        return move.normalized;
     }
 
-    void Rotate()
+    void Movement(Vector3 move)
+    {
+        controller.Move(move * speed * Time.deltaTime);
+    }
+
+    void Rotate(Vector3 move)
+    {
+        Vector3 mouseDir = GetMouseDirection();
+
+        if (mouseDir.sqrMagnitude > 0.01f)
+        {
+            lastMouseDir = mouseDir;
+        }
+
+        Vector3 finalDir = lastMouseDir;
+
+        // Si no hay mouse -> usar movimiento
+        if (finalDir.sqrMagnitude < 0.01f && move.sqrMagnitude > 0.01f)
+            finalDir = move;
+
+        if (finalDir.sqrMagnitude > 0.01f)
+        {
+            Quaternion targetRot = Quaternion.LookRotation(finalDir);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotSpeed * Time.deltaTime);
+        }
+    }
+
+    Vector3 GetMouseDirection()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out RaycastHit hit, 100f, groundMask))
         {
-            Vector3 target = hit.point;
-
-            target.y = transform.position.y;
-
-            Vector3 direction = target - transform.position;
-
-            if (direction.sqrMagnitude > 0.01f)
-            {
-                Quaternion targetRotation = Quaternion.LookRotation(direction);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotSpeed * Time.deltaTime);
-            }
+            Vector3 dir = hit.point - transform.position;
+            dir.y = 0;
+            return dir.normalized;
         }
 
+        return Vector3.zero;
     }
 
+
+    void UpdateAnimations(Vector3 move)
+    {
+        Vector3 localMove = transform.InverseTransformDirection(move);
+        animator.SetFloat("MoveX", localMove.x);
+        animator.SetFloat("MoveZ", localMove.z);
+
+        //Debug.Log(localMove);
+    }
 
 
 }
