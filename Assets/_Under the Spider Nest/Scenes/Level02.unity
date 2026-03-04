@@ -1851,7 +1851,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &572015670
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12172,7 +12172,7 @@ Transform:
   m_GameObject: {fileID: 740689870}
   serializedVersion: 2
   m_LocalRotation: {x: 0.39705288, y: -0.0039745215, z: 0.0021345578, w: 0.9177847}
-  m_LocalPosition: {x: 68.3, y: 7.76, z: -253.59999}
+  m_LocalPosition: {x: 68.3, y: 7.76, z: -260.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19794,12 +19794,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c8ee1885d0f63240a9ea277fe90316a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Fade
-  image: {fileID: 2088191770}
+  image: {fileID: 1923502597}
   tweenTime: 1
   onEndFadeEvent:
     m_PersistentCalls:
-      m_Calls: []
-  fadeOutOnStart: 1
+      m_Calls:
+      - m_Target: {fileID: 1279816462}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: ChangeSceneAfterWin
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  fadeOutOnStart: 0
 --- !u!4 &1279816461
 Transform:
   m_ObjectHideFlags: 0
@@ -19829,7 +19841,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   enemiesDefeatedText: {fileID: 1198444688}
   currentLevel: 2
-  enemiesDefeated: 0
+  enemiesDefeated: 18
+  fade: {fileID: 1279816459}
 --- !u!1001 &1280638524
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20686,7 +20699,7 @@ Transform:
   m_GameObject: {fileID: 1454500015}
   serializedVersion: 2
   m_LocalRotation: {x: 0.39705288, y: -0.0039745215, z: 0.0021345578, w: 0.9177847}
-  m_LocalPosition: {x: 68.3, y: 7.76, z: -253.59999}
+  m_LocalPosition: {x: 68.3, y: 7.76, z: -260.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -25445,6 +25458,10 @@ PrefabInstance:
       value: MachineGun
       objectReference: {fileID: 0}
     - target: {fileID: 4102544860362990558, guid: b42233707402e7d4bbdbf1d7e4c80a66, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 2403704808308431833}
+    - target: {fileID: 4102544860362990558, guid: b42233707402e7d4bbdbf1d7e4c80a66, type: 3}
       propertyPath: groundMask.m_Bits
       value: 64
       objectReference: {fileID: 0}
@@ -25458,7 +25475,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5599787983854187125, guid: b42233707402e7d4bbdbf1d7e4c80a66, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -248.7
+      value: -255.4
       objectReference: {fileID: 0}
     - target: {fileID: 5599787983854187125, guid: b42233707402e7d4bbdbf1d7e4c80a66, type: 3}
       propertyPath: m_LocalRotation.w
@@ -25549,6 +25566,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 389861541}
   m_SourcePrefab: {fileID: 100100000, guid: b42233707402e7d4bbdbf1d7e4c80a66, type: 3}
+--- !u!95 &2403704808308431833 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8588515539029013171, guid: b42233707402e7d4bbdbf1d7e4c80a66, type: 3}
+  m_PrefabInstance: {fileID: 2403704808308431832}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3379070734419437718 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5599787983854187125, guid: b42233707402e7d4bbdbf1d7e4c80a66, type: 3}

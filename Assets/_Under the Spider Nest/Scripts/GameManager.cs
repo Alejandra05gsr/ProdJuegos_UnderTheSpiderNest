@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
 
     bool paused = false;
 
+    public GameObject fade;
+
     void Awake()
     {
         instance = this;
@@ -56,24 +58,31 @@ public class GameManager : MonoBehaviour
     {
         if (enemiesDefeated >= ConditionToWin())
         {
-            
-            switch (currentLevel)
-            {
-                case 1:
-                    SceneManager.LoadScene("Level02");
-                    break;
-                case 2:
-                    SceneManager.LoadScene("Level03");
-                    break;
-                case 3:
-                    SceneManager.LoadScene("Level04");
-                    break;
-                case 4:
-                    SceneManager.LoadScene("Win");
-                    break;
-            }
+
+            fade.GetComponent<Fade>().Fading(true);
+    
         }
     }
+
+    public void ChangeSceneAfterWin()
+    {
+        switch (currentLevel)
+        {
+            case 1:
+                SceneManager.LoadScene("Level02");
+                break;
+            case 2:
+                SceneManager.LoadScene("Level03");
+                break;
+            case 3:
+                SceneManager.LoadScene("Level04");
+                break;
+            case 4:
+                SceneManager.LoadScene("Win");
+                break;
+        }
+    }
+
 
     public void EnemyDefeated()
     {

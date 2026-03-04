@@ -88,5 +88,9 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log(localMove);
     }
 
+    void ResetPosition()
+    {
+
+    }
 
 }
