@@ -20,13 +20,29 @@ public class DefaultWeapon : MonoBehaviour
         CheckWeapon();
     }
 
-    void CheckWeapon()
+    void CheckWeapon() //Se activa la metralleta si no hay ni bazooka ni fuego
     {
         if (!bazookaPrefab.activeInHierarchy && !firetPrefab.activeInHierarchy)
         {
-            metralletaPrefab.SetActive(true);
-            metralleta_img.SetActive(true);
+            ActivateDefaultWeapon();
         }
+    }
+
+    public void DesactivateDefaultWeapon() //Desactivo metralleta
+    {
+        metralletaPrefab.SetActive(false);
+        metralleta_img.SetActive(false);
+    }
+
+    public void ActivateDefaultWeapon() //Desactivo metralleta
+    {
+        metralletaPrefab.SetActive(true);
+        metralleta_img.SetActive(true);
+    }
+
+    public void LlamarReload()
+    {
+        bazookaPrefab.GetComponent<Bazooka>().Reload();
     }
 
 }

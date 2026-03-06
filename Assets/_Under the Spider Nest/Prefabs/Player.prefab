@@ -11251,6 +11251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf74e3da828a16945981ce1eec463f3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  animator: {fileID: 8588515539029013171}
   speed: 7
   groundMask:
     serializedVersion: 2
@@ -11269,7 +11270,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HP
   hpImage: []
   playerHP: 1
-  PowerUps: {fileID: 4374410431393821069}
+  powerUps: {fileID: 0}
+  gameManager: {fileID: 0}
+  fade: {fileID: 0}
 --- !u!114 &266820434623402913
 MonoBehaviour:
   m_ObjectHideFlags: 0

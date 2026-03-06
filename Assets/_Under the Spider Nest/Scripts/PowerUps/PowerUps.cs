@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public abstract class PowerUps : MonoBehaviour
@@ -7,9 +8,12 @@ public abstract class PowerUps : MonoBehaviour
     public GameObject prefabPowerUp;
 
     public GameObject imagePowerUp;
+    public TextMeshProUGUI countText;
 
     protected bool isActive = false; 
     protected bool machineGunActive = true;
+
+    public bool needsTimer;
 
     void Start()
     {
@@ -30,12 +34,33 @@ public abstract class PowerUps : MonoBehaviour
 
         imagePowerUp.SetActive(true);
 
-        StartCoroutine(DurationPowerUp());
+        PowerUpTimer();
+    }
+
+    public virtual void PowerUpTimer()
+    {
+        if (needsTimer)
+        {
+            StartCoroutine(DurationPowerUp());
+        }
     }
 
     IEnumerator DurationPowerUp()
     {
-        yield return new WaitForSeconds(timeActive);
+        int timeLeft = timeActive;
+
+        while (timeLeft > 0)
+        {
+            if (countText != null)
+                countText.text = timeLeft + "s";
+
+            yield return new WaitForSeconds(1f);
+            timeLeft--;
+        }
+
+        if (countText != null)
+            countText.text = "0";
+
         DeactivatePowerUp();
     }
 
@@ -46,10 +71,6 @@ public abstract class PowerUps : MonoBehaviour
 
         prefabPowerUp.SetActive(false);
         imagePowerUp.SetActive(false);
-
-        GameObject mg = GameObject.FindGameObjectWithTag("MachineGun");
-        if (mg != null)
-            mg.SetActive(true);
     }
 
 

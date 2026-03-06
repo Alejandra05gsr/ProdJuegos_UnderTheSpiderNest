@@ -11,11 +11,25 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 lastMouseDir;
 
+    bool isDead;
+
+
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        controller = GetComponent<CharacterController>();   
+        controller = GetComponent<CharacterController>();
+        isDead = false;
+    }
+
+    public void Respawn()
+    {
+        isDead = false;
+
+        controller.enabled = false;
+        transform.position = transform.position; // Unity refresca el controller
+        controller.enabled = true;
     }
 
     // Update is called once per frame
@@ -37,13 +51,22 @@ public class PlayerMovement : MonoBehaviour
         return move.normalized;
     }
 
+    public void Die()
+    {
+        isDead = true;
+    }
+
     void Movement(Vector3 move)
     {
+        if (isDead) return;
+
         controller.Move(move * speed * Time.deltaTime);
     }
 
     void Rotate(Vector3 move)
     {
+        if (isDead) return;
+
         Vector3 mouseDir = GetMouseDirection();
 
         if (mouseDir.sqrMagnitude > 0.01f)
@@ -86,11 +109,6 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("MoveZ", localMove.z);
 
         //Debug.Log(localMove);
-    }
-
-    void ResetPosition()
-    {
-
     }
 
 }

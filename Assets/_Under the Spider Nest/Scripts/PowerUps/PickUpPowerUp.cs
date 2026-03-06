@@ -2,22 +2,36 @@ using UnityEngine;
 
 public class PickUpPowerUp : MonoBehaviour
 {
-    public PowerUps powerUp; 
-    public MachineGun machineGun;
-    public GameObject metralleta_img;
+    public GameObject powerUp;
+    public GameObject defaultWeapon;
+    public bool isBazooka, isFT, isShield;
 
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player")) return;
 
         powerUp.gameObject.SetActive(true);
-        machineGun.gameObject.SetActive(false);
-        metralleta_img.SetActive(false);
+        powerUp.GetComponent<PowerUps>().ActivatePowerUp();
 
-        powerUp.ActivatePowerUp();
+        if (isBazooka)
+        {
+            defaultWeapon.GetComponent<DefaultWeapon>().LlamarReload();
+        }
+        //else if (isFT)
+        //{
+
+        //}
+        //else if (isFT)
+        //{
+
+        //}
+
+        defaultWeapon.GetComponent<DefaultWeapon>().DesactivateDefaultWeapon();
 
         Destroy(gameObject);
     }
+
+
 }
 
 

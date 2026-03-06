@@ -26,7 +26,7 @@ public class MaterialFade : MonoBehaviour
 
     public void StartFade()
     {
-        StartCoroutine(FadeOut());
+        //StartCoroutine(FadeOut());
     }
 
     IEnumerator FadeOut()
@@ -48,6 +48,5 @@ public class MaterialFade : MonoBehaviour
             yield return null;
         }
 
-        gameObject.SetActive(false); // opcional
     }
 }

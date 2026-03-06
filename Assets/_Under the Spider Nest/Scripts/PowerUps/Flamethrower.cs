@@ -1,9 +1,11 @@
 using UnityEngine;
+using TMPro;
 
 public class Flamethrower : Weapons
 {
 
     public GameObject insecticide;
+    public TextMeshProUGUI ammoText;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
