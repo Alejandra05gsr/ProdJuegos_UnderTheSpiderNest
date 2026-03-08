@@ -62,15 +62,16 @@ public class HP : MonoBehaviour
     IEnumerator Invulnerable()
     {
         isInvulnerable = true;
-        invulnerable.SetActive(true);
+        //invulnerable.SetActive(true);
         yield return new WaitForSeconds(5f);
         isInvulnerable = false;
-        invulnerable.SetActive(false);
+        //invulnerable.SetActive(false);
     }
 
     void NormalDie()
     {
         animator.SetBool("Die", true);
+        Invoke(nameof(MatFade), 2f);
 
         GetComponent<PlayerMovement>().Die();
 
@@ -87,7 +88,8 @@ public class HP : MonoBehaviour
         //animator.SetBool("Idle", false);
         animator.SetBool("Die", true);
 
-        GetComponent<PlayerMovement>().Die();
+
+        Invoke(nameof(MatFade), 2f);
 
         if (powerUps != null)
             powerUps.SetActive(false);
@@ -96,8 +98,14 @@ public class HP : MonoBehaviour
         //gameManager.GetComponent<CameraShake>().ShakeCamera(2,2,2);
 
         Debug.Log("Jugador muere");
+        this.GetComponent<MaterialFade>().StartFade();
         Invoke(nameof(FadeGameOver), 3f);
     }
+
+    void MatFade()
+    {
+        this.GetComponent<MaterialFade>().StartFade();
+    }    
 
     void FadeGameOver()
     {

@@ -13,10 +13,6 @@ public class PlayerMovement : MonoBehaviour
 
     bool isDead;
 
-
-
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -28,11 +24,10 @@ public class PlayerMovement : MonoBehaviour
         isDead = false;
 
         controller.enabled = false;
-        transform.position = transform.position; // Unity refresca el controller
+        transform.position = transform.position;
         controller.enabled = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
         Vector3 move = GetMovementInput();
@@ -63,6 +58,15 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(move * speed * Time.deltaTime);
     }
 
+    void UpdateAnimations(Vector3 move)
+    {
+        if (isDead) return;
+
+        bool walking = move.sqrMagnitude > 0.01f;
+
+        animator.SetBool("Walking", walking);
+    }
+
     void Rotate(Vector3 move)
     {
         if (isDead) return;
@@ -76,7 +80,6 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 finalDir = lastMouseDir;
 
-        // Si no hay mouse -> usar movimiento
         if (finalDir.sqrMagnitude < 0.01f && move.sqrMagnitude > 0.01f)
             finalDir = move;
 
@@ -100,15 +103,4 @@ public class PlayerMovement : MonoBehaviour
 
         return Vector3.zero;
     }
-
-
-    void UpdateAnimations(Vector3 move)
-    {
-        Vector3 localMove = transform.InverseTransformDirection(move);
-        animator.SetFloat("MoveX", localMove.x);
-        animator.SetFloat("MoveZ", localMove.z);
-
-        //Debug.Log(localMove);
-    }
-
 }

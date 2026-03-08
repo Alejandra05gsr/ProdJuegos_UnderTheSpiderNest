@@ -27,6 +27,7 @@ public class EnemyHP : MonoBehaviour
         Debug.Log("Empezando muerte");
 
 
+
         this.GetComponent<MaterialFade>().StartFade();
         this.gameObject.GetComponent<EnemyMovement>().DesactiveEnemy();
         Invoke(nameof(Desvanecer), 2f);
@@ -35,6 +36,7 @@ public class EnemyHP : MonoBehaviour
     void Desvanecer()
     {
         //material.DOFade(0, VANISH_TIME).SetDelay(VANISH_TIME);
+        this.GetComponent<MaterialFade>().StartFade();
         gameObject.SetActive(false);
         GameManager.instance.EnemyDefeated();
     }

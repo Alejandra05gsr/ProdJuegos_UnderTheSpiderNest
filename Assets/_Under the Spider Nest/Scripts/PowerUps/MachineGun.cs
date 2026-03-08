@@ -10,6 +10,8 @@ public class MachineGun : Weapons
     public float frequency = 1;
     public float duration = 0.3f;
 
+    public ParticleSystem shootParticle;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,6 +24,7 @@ public class MachineGun : Weapons
         if (Input.GetMouseButton(0))
         {
             Shooting();
+            shootParticle.Play();
         }
     }
 
@@ -38,7 +41,9 @@ public class MachineGun : Weapons
 
     protected override void ShootBehaviour()
     {
-        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        GameObject bullet = BulletPool.instance.GetBullet();
+        bullet.transform.position = firePoint.position;
+        bullet.transform.rotation = firePoint.rotation;
         cameraShake.ShakeCamera(amplitude, frequency, duration);
     }
 

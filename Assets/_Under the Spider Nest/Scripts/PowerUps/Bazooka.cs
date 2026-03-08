@@ -3,7 +3,6 @@ using TMPro;
 
 public class Bazooka : Weapons
 {
-
     public GameObject bazookaBulletPrefab;
     public CameraShake cameraShake;
     public int totalAmmo = 5;
@@ -48,7 +47,13 @@ public class Bazooka : Weapons
 
     protected override void ShootBehaviour()
     {
-        Instantiate(bazookaBulletPrefab, firePoint.position, firePoint.rotation);
+        GameObject bullet = Instantiate(bazookaBulletPrefab, firePoint.position, firePoint.rotation);
+
+        Collider bulletCollider = bullet.GetComponent<Collider>();
+        Collider playerCollider = GetComponentInParent<Collider>();
+
+        Physics.IgnoreCollision(bulletCollider, playerCollider);
+
         cameraShake.ShakeCamera(amplitude, frequency, duration);
     }
 
@@ -61,7 +66,7 @@ public class Bazooka : Weapons
             currentAmmo = 0;
             DeactivatePowerUp();
             imageBazooka.SetActive(false);
-            this.gameObject.SetActive(false);
+            Invoke(nameof(disactiveBullet), 2f);
         }
         if (currentAmmo > totalAmmo)
         {
@@ -69,6 +74,11 @@ public class Bazooka : Weapons
         }
 
         
+    }
+
+    void disactiveBullet()
+    {
+        this.gameObject.SetActive(false);
     }
 
     //recargar el arma

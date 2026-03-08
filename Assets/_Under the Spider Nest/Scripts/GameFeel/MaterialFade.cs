@@ -4,49 +4,48 @@ using UnityEngine;
 
 public class MaterialFade : MonoBehaviour
 {
-    public float fadeDuration = 2f;
-    private Material[] materials;
+    public float fadeDuration = 1.5f;
 
-    void Start()
+    Renderer[] renderers;
+
+    void Awake()
     {
-        // 1️ Buscar TODOS los Renderers en hijos
-        Renderer[] renderers = GetComponentsInChildren<Renderer>();
-
-        // 2️ Guardar todos los materiales en una lista
-        List<Material> mats = new List<Material>();
-        Debug.Log("Renderers encontrados: " + renderers.Length);
-
-        foreach (Renderer r in renderers)
-        {
-            mats.AddRange(r.materials); // importante usar .materials
-        }
-
-        materials = mats.ToArray();
+        renderers = GetComponentsInChildren<Renderer>();
     }
 
     public void StartFade()
     {
-        //StartCoroutine(FadeOut());
+        StartCoroutine(FadeOut());
     }
 
     IEnumerator FadeOut()
     {
-        Debug.Log("Empezando fade");
-        float time = 0f;
+        float time = 0;
 
         while (time < fadeDuration)
         {
             float alpha = Mathf.Lerp(1f, 0f, time / fadeDuration);
 
-            foreach (Material m in materials)
+            foreach (Renderer r in renderers)
             {
-                Color c = m.color;
-                m.color = new Color(c.r, c.g, c.b, alpha);
+                foreach (Material m in r.materials)
+                {
+                    Color c = m.color;
+                    m.color = new Color(c.r, c.g, c.b, alpha);
+                }
             }
 
             time += Time.deltaTime;
             yield return null;
         }
 
+        foreach (Renderer r in renderers)
+        {
+            foreach (Material m in r.materials)
+            {
+                Color c = m.color;
+                m.color = new Color(c.r, c.g, c.b, 0f);
+            }
+        }
     }
 }

@@ -4,43 +4,38 @@ using TMPro;
 public class Flamethrower : Weapons
 {
 
-    public GameObject insecticide;
+    public ParticleSystem fire;
     public TextMeshProUGUI ammoText;
+    public GameObject damageZone;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        insecticide.gameObject.GetComponent<ParticleSystem>().Stop();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         if (!gameObject.activeSelf) return;
+        ShootBehaviour();
 
-        if (Input.GetMouseButton(0))
-        {
-                ShootBehaviour();
-        }
-        else
-        {
-            insecticide.gameObject.GetComponent<ParticleSystem>().Stop();
-        }
     }
 
 
     protected override void ShootBehaviour()
     {
-        insecticide.gameObject.GetComponent<ParticleSystem>().Play();
-        Debug.Log("Insecticida activo");
-    }
-
-    private void OnParticleCollision(GameObject other)
-    {
-        if(other.CompareTag("Enemy"))
+        if (Input.GetMouseButton(0))
         {
-            Debug.Log("Enemigo alcanzado por el insecticida");
-            //other.GetComponent<EnemyHealth>().TakeDamage(1);
+            if (!fire.isPlaying)
+                fire.Play();
+            damageZone.SetActive(true);
+        }
+        else
+        {
+            if (fire.isPlaying)
+                fire.Stop();
+            damageZone.SetActive(false);
         }
     }
 
